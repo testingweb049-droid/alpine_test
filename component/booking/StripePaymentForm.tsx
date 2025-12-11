@@ -108,7 +108,7 @@ function PaymentForm({ amount }: PaymentFormProps) {
       });
 
       // 5️⃣ Redirect to success page
-      router.push("/book-ride/success");
+      router.push("/order-placed");
     } catch (err: any) {
       // Extract user-friendly error message
       const errorMessage = err.response?.data?.error || err.message || "Payment failed. Please try again.";

@@ -50,7 +50,7 @@ export async function POST(req: NextRequest) {
         // Store reservation number for easy lookup
         reservation_number: reservationNumber || "",
       },
-      success_url: `${origin}/book-ride/success?session_id={CHECKOUT_SESSION_ID}`,
+      success_url: `${origin}/order-placed?session_id={CHECKOUT_SESSION_ID}`,
       cancel_url: `${origin}/book-ride?canceled=true`,
     });
 
