@@ -1,139 +1,100 @@
-'use client';
-
 import React from 'react';
 import Image from 'next/image';
-import Link from 'next/link';
-import { Swiper, SwiperSlide } from 'swiper/react';
-import { Pagination } from 'swiper/modules';
+import Button from '../button/PrimaryButton';
 
-import 'swiper/css';
-import 'swiper/css/pagination';
-
-interface ServiceCard {
-  title: string;
-  image: string;
-  link: string;
-}
-
-const services: ServiceCard[] = [
-  {
-    title: 'SKI RESORT TRANSFERS',
-    image: '/ski-resort-transfer.png',
-    link: '/ski-transfer',
-  },
-  {
-    title: 'AIRPORT TRANSFERS',
-    image: '/air-port-transfer.png',
-    link: '/airport-transfer',
-  },
-  {
-    title: 'HOURLY SERVICE',
-    image: '/hourly-transfer.png',
-    link: '/book-ride',
-  },
-];
+const largeChauffeurImage = '/Desktop image (1).png';
+const smallChauffeurImage = '/ser2.png';
 
 const ServiceSection: React.FC = () => {
   return (
-    <section className="bg-secondary text-white py-16 lg:py-24">
-      <div className="max-w-7xl mx-auto px-4">
+    <section
+      className="bg-secondary text-white py-16 md:py-24"
+      style={{ fontFamily: 'sans-serif' }}
+    >
+      {/* ========================================
+        Top Heading Section
+      ======================================== */}
+      <div className="container mx-auto px-4 text-center mb-12 md:mb-16">
+       <p
+  className="text-sm md:text-base uppercase text-center mb-2"
+  style={{
+    color: '#C6A054',           // elegant gold tone
+    letterSpacing: '0.5em',     // wide spacing between letters
+    wordSpacing: '',         // extra spacing between words
+    fontWeight: 500,            // slightly bold for luxury look
+  }}
+>
+  LUXURY CHAUFFEUR SERVICES
+</p>
 
-        {/* Heading */}
-        <div className="text-center mb-14">
-          <h2
-            className="text-3xl md:text-4xl lg:text-5xl font-semibold tracking-wider"
-            style={{ color: '#C6A054' }}
-          >
-            OUR SERVICES
-          </h2>
+        <h2 className="text-xl md:text-4xl font-light tracking-wide">
+  Step into a world of comfort and class, your trusted{' '}
+  <span className="md:block inline">
+    destination for exclusive chauffeur rides.
+  </span>
+</h2>
 
-          <p className="mt-4 text-sm md:text-base text-white/90">
-            Our comprehensive services and areas we cover
-          </p>
-        </div>
+                <div className="w-24 h-0.5 bg-gradient-to-r from-transparent via-yellow-600 to-transparent mx-auto mt-6"></div>
 
-        {/* ================= MOBILE SLIDER ================= */}
-        <div className="lg:hidden">
-          <Swiper
-            modules={[Pagination]}
-            slidesPerView={1}
-            spaceBetween={16}
-            pagination={{ clickable: true }}
-          >
-            {services.map((service, index) => (
-              <SwiperSlide key={index}>
-                <ServiceCardItem service={service} priority={index === 0} />
-              </SwiperSlide>
-            ))}
-          </Swiper>
-        </div>
-
-        {/* ================= DESKTOP GRID ================= */}
-        <div className="hidden lg:grid grid-cols-3 gap-8">
-          {services.map((service, index) => (
-            <ServiceCardItem
-              key={index}
-              service={service}
-              priority={index === 0}
-            />
-          ))}
-        </div>
       </div>
 
-      {/* Swiper pagination styling */}
-      <style jsx global>{`
-        .swiper-pagination {
-          margin-top: 20px;
-        }
-        .swiper-pagination-bullet {
-          background: rgba(255, 255, 255, 0.4);
-          opacity: 1;
-        }
-        .swiper-pagination-bullet-active {
-          background: #c6a054;
-        }
-      `}</style>
+      {/* ========================================
+        Image & Content Layout
+      ======================================== */}
+      <div className="container mx-auto px-4">
+        {/* Responsive Image Section */}
+        <div className="relative w-full aspect-[16/9] md:aspect-[21/11]  overflow-hidden shadow-2xl">
+          <Image
+            src="/backs.png"
+            alt="Businessman reading newspaper in back of luxury chauffeur car"
+            fill
+            className="object-cover"
+            priority
+          />
+        </div>
+
+        {/* ========================================
+          Text Block Section
+        ======================================== */}
+     <div className="grid grid-cols-1 md:grid-cols-[1fr_auto_1fr] gap-8 md:gap-16 pt-10 md:pt-16 items-start">
+  {/* Left Text and Button */}
+  <div>
+    <h3 className="text-3xl md:text-4xl font-light leading-snug md:mb-6">
+      Premier Chauffeur Solutions for a Refined Travel Experience
+    </h3>
+    <div className='hidden md:block'>
+
+    {/* <Button label="Learn More" className="text-white font-normal px-6 py-1" /> */}
+    </div>
+  </div>
+
+  {/* Elegant Vertical Gradient Divider */}
+  <div
+    className="hidden md:block w-px h-40 mx-auto"
+    style={{
+      background:
+        'linear-gradient(to bottom, rgba(184,134,11,0), #b8860b, rgba(184,134,11,0))',
+    }}
+  ></div>
+
+  {/* Right Description */}
+  <div>
+    <p className="text-gray-300 leading-relaxed text-base">
+      Step into a world of comfort and class with Sky X, your trusted destination for exclusive chauffeur-driven rides. 
+      Our luxury fleet, managed by trained professional drivers, ensures you travel with ease, safety, and style. 
+      Whether it’s a business meeting, airport transfer, or a special occasion, Sky X delivers the ultimate first-class experience.
+    </p>
+  </div>
+  <div className='block md:hidden'>
+
+    <Button label="Learn More" className="text-white font-normal px-6 py-1" />
+    </div>
+</div>
+
+
+      </div>
     </section>
   );
 };
 
 export default ServiceSection;
-
-/* ================= SERVICE CARD COMPONENT ================= */
-
-const ServiceCardItem = ({
-  service,
-  priority,
-}: {
-  service: ServiceCard;
-  priority?: boolean;
-}) => {
-  return (
-    <Link
-      href={service.link}
-      className="group block overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300"
-    >
-      {/* 🔑 Aspect ratio FIX */}
-      <div className="relative w-full aspect-[3/4]">
-        <Image
-          src={service.image}
-          alt={service.title}
-          fill
-          priority={priority}
-          sizes="(max-width: 768px) 100vw, 33vw"
-          className="object-cover object-center transition-transform duration-500 scale-110"
-        />
-
-        {/* Overlay */}
-        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />
-
-        {/* Title */}
-        <div className="absolute bottom-0 left-0 right-0 p-5">
-          <h3 className="text-white text-lg lg:text-xl font-semibold uppercase tracking-wide">
-            {service.title}
-          </h3>
-        </div>
-      </div>
-    </Link>
-  );
-};
