@@ -62,14 +62,14 @@ export default function HeroSection() {
       {/* Mobile Background */}
       <div
         className="absolute inset-0 bg-cover bg-center md:hidden"
-        style={{ backgroundImage: "url('/aaa.png')" }}
+        style={{ backgroundImage: "url('/hero-banner.png')" }}
         aria-hidden
       />
 
       {/* Desktop Background */}
       <div
         className="absolute inset-0 bg-cover bg-center hidden md:block"
-        style={{ backgroundImage: "url('/aaa.png')" }}
+        style={{ backgroundImage: "url('/hero-banner.png')" }}
         aria-hidden
       />
 
