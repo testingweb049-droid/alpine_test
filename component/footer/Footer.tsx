@@ -9,7 +9,6 @@ import {
   Instagram,
   Dribbble,
   X as XIcon,
-  MapPin,
 } from "lucide-react";
 
 export default function Footer() {
@@ -161,18 +160,6 @@ export default function Footer() {
                 <Phone size={16} />
                 <span>+41 76 318 08 82</span>
               </a>
-              
-              {/* Company Information */}
-              <div className="pt-2 text-sm text-gray-300">
-                <div className="flex items-start gap-2">
-                  <MapPin size={16} className="mt-0.5 flex-shrink-0" />
-                  <p>
-                    <span className="font-semibold text-white">Nate Solutions GmbH</span>
-                    {' '}
-                    Spitalstrasse 31, 8952 Schlieren, Switzerland. VAT / CHE-112.173.501
-                  </p>
-                </div>
-              </div>
             </div>
 
             {/* Social Media */}
