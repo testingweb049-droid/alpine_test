@@ -17,6 +17,7 @@ export default function Footer() {
 
   const quickLinks = [
     { name: "Home", href: "/" },
+    { name: "Transfers", href: "/alpine-transfer" },
     { name: "About Us", href: "/about" },
     { name: "Our Fleets", href: "/fleet" },
     // { name: "Services", href: "#services" },
