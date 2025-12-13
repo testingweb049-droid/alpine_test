@@ -2,54 +2,42 @@
 
 import React from 'react';
 import Image from 'next/image';
-import Link from 'next/link';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Pagination } from 'swiper/modules';
 
 import 'swiper/css';
 import 'swiper/css/pagination';
 
-interface ServiceCard {
-  title: string;
+interface Route {
+  name: string;
   image: string;
-  link: string;
 }
 
-const services: ServiceCard[] = [
-  {
-    title: 'SKI RESORT TRANSFERS',
-    image: '/ski-resort-transfer.png',
-    link: '/ski-transfer',
-  },
-  {
-    title: 'AIRPORT TRANSFERS',
-    image: '/air-port-transfer.png',
-    link: '/airport-transfer',
-  },
-  {
-    title: 'HOURLY SERVICE',
-    image: '/hourly-transfer.png',
-    link: '/book-ride',
-  },
+const routes: Route[] = [
+  { name: 'BASEL', image: '/basil.png' },
+  { name: 'ZURICH', image: '/zurish.png' },
+  { name: 'INTERLAKEN', image: '/interlaken.png' },
 ];
 
-const ServiceSection: React.FC = () => {
+const PopularRoutesSection: React.FC = () => {
   return (
     <section className="bg-secondary text-white py-16 lg:py-24">
       <div className="max-w-7xl mx-auto px-4">
 
-        {/* Heading */}
+        {/* Header */}
         <div className="text-center mb-14">
-          <h2
-            className="text-3xl md:text-4xl lg:text-5xl font-semibold tracking-wider"
+          <p
+            className="text-sm uppercase mb-3 tracking-[0.5em]"
             style={{ color: '#C6A054' }}
           >
-            OUR SERVICES
+            POPULAR ROUTES
+          </p>
+
+          <h2 className="text-2xl md:text-3xl lg:text-4xl font-semibold mb-4">
+            Where Most Travelers Go From Here
           </h2>
 
-          <p className="mt-4 text-sm md:text-base text-white/90">
-            Our comprehensive services and areas we cover
-          </p>
+          <div className="w-24 h-0.5 bg-gradient-to-r from-transparent via-[#C6A054] to-transparent mx-auto" />
         </div>
 
         {/* ================= MOBILE SLIDER ================= */}
@@ -59,10 +47,11 @@ const ServiceSection: React.FC = () => {
             slidesPerView={1}
             spaceBetween={16}
             pagination={{ clickable: true }}
+            className="routes-swiper"
           >
-            {services.map((service, index) => (
+            {routes.map((route, index) => (
               <SwiperSlide key={index}>
-                <ServiceCardItem service={service} priority={index === 0} />
+                <RouteCard route={route} priority={index === 0} />
               </SwiperSlide>
             ))}
           </Swiper>
@@ -70,26 +59,26 @@ const ServiceSection: React.FC = () => {
 
         {/* ================= DESKTOP GRID ================= */}
         <div className="hidden lg:grid grid-cols-3 gap-8">
-          {services.map((service, index) => (
-            <ServiceCardItem
+          {routes.map((route, index) => (
+            <RouteCard
               key={index}
-              service={service}
+              route={route}
               priority={index === 0}
             />
           ))}
         </div>
       </div>
 
-      {/* Swiper pagination styling */}
+      {/* Pagination styling */}
       <style jsx global>{`
-        .swiper-pagination {
+        .routes-swiper .swiper-pagination {
           margin-top: 20px;
         }
-        .swiper-pagination-bullet {
+        .routes-swiper .swiper-pagination-bullet {
           background: rgba(255, 255, 255, 0.4);
           opacity: 1;
         }
-        .swiper-pagination-bullet-active {
+        .routes-swiper .swiper-pagination-bullet-active {
           background: #c6a054;
         }
       `}</style>
@@ -97,27 +86,24 @@ const ServiceSection: React.FC = () => {
   );
 };
 
-export default ServiceSection;
+export default PopularRoutesSection;
 
-/* ================= SERVICE CARD COMPONENT ================= */
+/* ================= ROUTE CARD ================= */
 
-const ServiceCardItem = ({
-  service,
+const RouteCard = ({
+  route,
   priority,
 }: {
-  service: ServiceCard;
+  route: Route;
   priority?: boolean;
 }) => {
   return (
-    <Link
-      href={service.link}
-      className="group block overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300"
-    >
-      {/* 🔑 Aspect ratio FIX */}
+    <div className="group relative overflow-hidden rounded-2xl shadow-lg cursor-pointer">
+      {/* 🔑 SINGLE ASPECT RATIO */}
       <div className="relative w-full aspect-[3/4]">
         <Image
-          src={service.image}
-          alt={service.title}
+          src={route.image}
+          alt={route.name}
           fill
           priority={priority}
           sizes="(max-width: 768px) 100vw, 33vw"
@@ -128,12 +114,12 @@ const ServiceCardItem = ({
         <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />
 
         {/* Title */}
-        <div className="absolute bottom-0 left-0 right-0 p-5">
-          <h3 className="text-white text-lg lg:text-xl font-semibold uppercase tracking-wide">
-            {service.title}
+        <div className="absolute bottom-0 left-0 right-0 p-5 lg:p-6">
+          <h3 className="text-white text-xl lg:text-2xl font-semibold uppercase tracking-wide">
+            {route.name}
           </h3>
         </div>
       </div>
-    </Link>
+    </div>
   );
 };

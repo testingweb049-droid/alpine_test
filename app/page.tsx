@@ -5,17 +5,23 @@ import ServiceLocationSection from "@/component/sections/ServiceLocationSection"
 import ServiceSection from "@/component/sections/ServiceSection";
 import Testimonials from "@/component/sections/Testimonials";
 import WhyChoose from "@/component/sections/WhyChoose";
+import BenefitsSection from "@/component/sections/BenefitsSection";
+import PopularRoutesSection from "@/component/sections/PopularRoutesSection";
+import TransfersSection from "@/component/sections/TransfersSection";
 
 export default function Home() {
   return (
    <>
    <HeroSection/>
    <ServiceSection/>
-   <ServiceLocationSection/>
-   <WhyChoose/>
+   {/* <ServiceLocationSection/> */}
+   <BenefitsSection/>
+   {/* <WhyChoose/> */}
    <FleetSection/>
-   <Testimonials/>
-   <FaqsSection/>
+   <PopularRoutesSection/>
+   <TransfersSection/>
+   {/* <Testimonials/> */}
+   {/* <FaqsSection/> */}
    </>
   );
 }
